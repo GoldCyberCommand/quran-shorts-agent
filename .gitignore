@@ -1,0 +1,19 @@
+# Credentials — never commit
+client_secret.json
+token.json
+
+# Local configuration and private notes
+config.json
+INTELLIGENCE.md
+
+# Runtime artefacts
+queue/
+state/
+logs/
+
+__pycache__/
+*.pyc
+*.egg-info/
+build/
+dist/
+.DS_Store

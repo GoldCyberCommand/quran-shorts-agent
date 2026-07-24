@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "quran-shorts-agent"
+version = "0.1.0"
+description = "Cut Quran recitation videos into YouTube Shorts on ayah pauses and drip-upload them automatically"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Gold Cyber Command Limited" }]
+requires-python = ">=3.9"
+dependencies = [
+    "google-api-python-client",
+    "google-auth-oauthlib",
+]
+keywords = ["quran", "youtube", "shorts", "ffmpeg", "automation"]
+
+[project.urls]
+Homepage = "https://github.com/GoldCyberCommand/quran-shorts-agent"
+Funding = "https://buymeacoffee.com/goldcybercommandlimited"
+
+[project.scripts]
+qsa = "qsa.cli:main"
+
+[tool.setuptools]
+packages = ["qsa"]

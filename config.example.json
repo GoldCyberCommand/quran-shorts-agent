@@ -1,0 +1,27 @@
+{
+  "source_dirs": [
+    "~/Videos/quran-sources"
+  ],
+  "segment": {
+    "min_seconds": 20,
+    "max_seconds": 58,
+    "target_seconds": 40,
+    "max_shorts_per_video": 3,
+    "silence_db": -35,
+    "silence_min_seconds": 0.8,
+    "pad_seconds": 0.3
+  },
+  "video": {
+    "width": 1080,
+    "height": 1920,
+    "background": "black"
+  },
+  "upload": {
+    "privacy_status": "unlisted",
+    "category_id": "27",
+    "max_uploads_per_run": 1,
+    "tags": ["Quran", "Recitation", "Tilawah", "Shorts"],
+    "title_template": "{surah} — Part {n} | Beautiful Quran Recitation #Shorts",
+    "description_template": "Recitation of {surah} (part {n}).\n\n#Quran #Recitation #Shorts"
+  }
+}
