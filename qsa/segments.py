@@ -10,6 +10,22 @@ import subprocess
 
 _SILENCE_START = re.compile(r"silence_start:\s*([0-9.]+)")
 _SILENCE_END = re.compile(r"silence_end:\s*([0-9.]+)")
+_MEAN_VOL = re.compile(r"mean_volume:\s*(-?[0-9.]+) dB")
+
+# Adaptive threshold: ayat are recited at roughly one per 5-15 s, so a
+# correct pause threshold yields at least this many pauses per minute.
+_MIN_PAUSES_PER_MIN = 3.0
+_ADAPTIVE_OFFSETS_DB = (-16, -13, -10, -7, -4, -2)
+
+
+def probe_mean_volume(path):
+    proc = subprocess.run(
+        ["ffmpeg", "-hide_banner", "-nostats", "-vn", "-i", path,
+         "-af", "volumedetect", "-f", "null", "-"],
+        capture_output=True, text=True,
+    )
+    m = _MEAN_VOL.search(proc.stderr)
+    return float(m.group(1)) if m else -20.0
 
 
 def probe_duration(path):
@@ -26,7 +42,7 @@ def detect_speech_chunks(path, silence_db, silence_min_seconds, duration):
     silence_filter = "silencedetect=noise={}dB:d={}".format(
         silence_db, silence_min_seconds)
     proc = subprocess.run(
-        ["ffmpeg", "-hide_banner", "-nostats", "-i", path,
+        ["ffmpeg", "-hide_banner", "-nostats", "-vn", "-i", path,
          "-af", silence_filter, "-f", "null", "-"],
         capture_output=True, text=True,
     )
@@ -102,16 +118,41 @@ def load_highlights(video_path):
     return segments or None
 
 
+def detect_chunks_adaptive(path, silence_min_seconds, duration):
+    """Try progressively more sensitive thresholds relative to the
+    recording's mean loudness until ayah-pause density looks right.
+    Returns (chunks, threshold_db_used)."""
+    mean_db = probe_mean_volume(path)
+    minutes = max(duration / 60.0, 0.25)
+    best = ([], None)
+    for offset in _ADAPTIVE_OFFSETS_DB:
+        db = round(mean_db + offset, 1)
+        chunks = detect_speech_chunks(path, db, silence_min_seconds, duration)
+        pauses = max(len(chunks) - 1, 0)
+        if len(chunks) > len(best[0]):
+            best = (chunks, db)
+        if pauses / minutes >= _MIN_PAUSES_PER_MIN:
+            return chunks, db
+    return best
+
+
 def find_segments(video_path, seg_cfg):
     manual = load_highlights(video_path)
     if manual is not None:
         return manual, "manual"
     duration = probe_duration(video_path)
-    chunks = detect_speech_chunks(
-        video_path, seg_cfg["silence_db"], seg_cfg["silence_min_seconds"], duration)
+    silence_db = seg_cfg["silence_db"]
+    if silence_db == "auto":
+        chunks, used_db = detect_chunks_adaptive(
+            video_path, seg_cfg["silence_min_seconds"], duration)
+        method = "auto@%sdB" % used_db
+    else:
+        chunks = detect_speech_chunks(
+            video_path, silence_db, seg_cfg["silence_min_seconds"], duration)
+        method = "auto"
     pad = seg_cfg["pad_seconds"]
     segments = pick_segments(
         chunks, seg_cfg["min_seconds"], seg_cfg["max_seconds"],
         seg_cfg["target_seconds"], seg_cfg["max_shorts_per_video"])
     padded = [(max(0.0, s - pad), min(duration, e + pad)) for s, e in segments]
-    return padded, "auto"
+    return padded, method

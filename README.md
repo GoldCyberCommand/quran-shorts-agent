@@ -110,7 +110,8 @@ next queued Short. Change cadence via the schedule or
 | `source_dirs` | Folders scanned recursively for new videos |
 | `segment.min/max/target_seconds` | Segment length bounds and sweet spot |
 | `segment.max_shorts_per_video` | Cap per source video |
-| `segment.silence_db`, `silence_min_seconds` | What counts as a pause |
+| `segment.silence_db` | `"auto"` (default: per-video adaptive threshold) or a fixed dB value |
+| `segment.silence_min_seconds` | Minimum pause length (default 0.5 s) |
 | `video.background` | `"black"` letterbox or `"blur"` fill |
 | `upload.privacy_status` | `unlisted` (default — flip to `public` when happy) |
 | `upload.title_template`, `description_template` | `{surah}`, `{n}` placeholders |

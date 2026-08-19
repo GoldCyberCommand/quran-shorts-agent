@@ -14,8 +14,8 @@ DEFAULTS = {
         "max_seconds": 58,
         "target_seconds": 40,
         "max_shorts_per_video": 3,
-        "silence_db": -35,
-        "silence_min_seconds": 0.8,
+        "silence_db": "auto",
+        "silence_min_seconds": 0.5,
         "pad_seconds": 0.3,
     },
     "video": {

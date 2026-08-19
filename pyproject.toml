@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "quran-shorts-agent"
-version = "0.1.0"
+version = "0.1.1"
 description = "Cut Quran recitation videos into YouTube Shorts on ayah pauses and drip-upload them automatically"
 readme = "README.md"
 license = { text = "MIT" }
