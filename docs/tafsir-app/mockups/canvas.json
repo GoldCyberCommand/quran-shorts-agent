@@ -1,0 +1,47 @@
+{
+  "artboards": [
+    { "file": "Main.dc.html", "title": "Reader — depth toggle + peek", "x": 0, "y": 0, "w": 1120, "h": 900 },
+    { "file": "Scholar.dc.html", "title": "Scholar depth — ikhtilāf", "x": 1200, "y": 0, "w": 1120, "h": 900 },
+    { "file": "Palette.dc.html", "title": "⌘K — jump to anything", "x": 0, "y": 1120, "w": 1120, "h": 760 },
+    { "file": "Thread.dc.html", "title": "Topic thread", "x": 1200, "y": 1120, "w": 1120, "h": 760 },
+    { "file": "Peek.dc.html", "title": "Cross-reference peek — anatomy", "x": 2400, "y": 0, "w": 640, "h": 640 }
+  ],
+  "annotations": [
+    {
+      "id": "note-depth",
+      "x": -460,
+      "y": 0,
+      "w": 380,
+      "text": "Reading depth is the bridge.\n\nPlain / Study / Scholar changes only what opens by DEFAULT — never what is available. A layman who gets curious expands the same scholarly views a student reads. One content set, two audiences.\n\nTry the toggle."
+    },
+    {
+      "id": "note-peek",
+      "x": -460,
+      "y": 260,
+      "w": 380,
+      "text": "Peek before you leap.\n\nClick 20:110 in the plain-English paragraph. A link never navigates on first touch — you get the verse, its translation, and WHY it is linked. Most link-following should end here, without ever leaving the page."
+    },
+    {
+      "id": "note-ikhtilaf",
+      "x": -460,
+      "y": 520,
+      "w": 380,
+      "text": "Ikhtilāf is reported, not resolved.\n\nThree readings of Kursī, each with who held it, the evidence, and a locator. Weight of support is shown by the left rule and the badge — majority, reported, minority — never by hiding the minority."
+    },
+    {
+      "id": "note-links",
+      "x": -460,
+      "y": 800,
+      "w": 380,
+      "text": "Every link names a scholar.\n\nLinks come from what a mufassir actually cites while commenting — not from similarity search. That is why the peek card's footer can always say who drew the connection, and why a link is reviewable like any other claim."
+    },
+    {
+      "id": "note-clean",
+      "x": -460,
+      "y": 1120,
+      "w": 380,
+      "text": "What 'clean' rules out.\n\nNo permanent sidebar. No tab bar of eight tafsīr works. No verse cards in a feed. No streaks or badges. Structure carried by type and space, not boxes — except the one boundary that is non-negotiable: our summary never looks like a scholar's words."
+    }
+  ],
+  "launch": { "view": "canvas" }
+}

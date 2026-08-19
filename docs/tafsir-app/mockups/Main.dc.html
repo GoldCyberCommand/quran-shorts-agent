@@ -1,0 +1,189 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+  <style>
+    body { margin: 0; background: #F3F5F3; color: #1A2521; font-family: "IBM Plex Sans", system-ui, sans-serif; }
+    a { color: #235450; } a:hover { color: #2E6F6A; }
+    * { box-sizing: border-box; }
+  </style>
+</helmet>
+
+<div style="width: 1120px; height: 900px; background: #F3F5F3; display: flex; flex-direction: column; overflow: hidden; position: relative">
+
+  <div style="height: 53px; flex-shrink: 0; background: #FAFBF9; border-bottom: 1px solid #D2DAD4; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; gap: 24px">
+
+    <div style="display: flex; align-items: center; gap: 10px; min-width: 0">
+      <div style="width: 26px; height: 26px; border: 1px solid #D2DAD4; border-radius: 3px; display: flex; align-items: center; justify-content: center; background: #F3F5F3; flex-shrink: 0">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#77837B" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"></path></svg>
+      </div>
+      <div style="display: flex; align-items: center; gap: 7px; font-size: 12px; color: #77837B; min-width: 0">
+        <span style="white-space: nowrap">Al-Fātiḥa 1:6</span>
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#B4BFB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0"><path d="M9 18l6-6-6-6"></path></svg>
+        <span style="white-space: nowrap">An-Nisā' 4:69</span>
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#B4BFB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0"><path d="M9 18l6-6-6-6"></path></svg>
+        <span style="color: #1A2521; font-weight: 500; white-space: nowrap">Al-Baqarah 2:255</span>
+      </div>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 14px; flex-shrink: 0">
+      <div style="display: flex; align-items: center; gap: 6px; padding: 5px 10px; border: 1px solid #D2DAD4; border-radius: 3px; background: #F3F5F3; color: #77837B; font-size: 11.5px">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#77837B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+        <span>Jump to anything</span>
+        <span style="font-family: ui-monospace, Menlo, monospace; font-size: 10.5px; color: #96A099; border: 1px solid #D2DAD4; border-radius: 2px; padding: 1px 4px; background: #FAFBF9">⌘K</span>
+      </div>
+
+      <div style="display: flex; border: 1px solid #D2DAD4; border-radius: 3px; overflow: hidden; background: #F3F5F3">
+        <div onClick="{{ setPlain }}" style="padding: 6px 13px; font-size: 11.5px; font-weight: {{ plainWeight }}; cursor: pointer; background: {{ plainBg }}; color: {{ plainFg }}; border-right: 1px solid #D2DAD4">Plain</div>
+        <div onClick="{{ setStudy }}" style="padding: 6px 13px; font-size: 11.5px; font-weight: {{ studyWeight }}; cursor: pointer; background: {{ studyBg }}; color: {{ studyFg }}; border-right: 1px solid #D2DAD4">Study</div>
+        <div onClick="{{ setScholar }}" style="padding: 6px 13px; font-size: 11.5px; font-weight: {{ scholarWeight }}; cursor: pointer; background: {{ scholarBg }}; color: {{ scholarFg }}">Scholar</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="flex-grow: 1; overflow: hidden; display: flex; justify-content: center; padding: 40px 24px 0">
+    <div style="width: 690px; max-width: 100%">
+
+      <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 26px">
+        <div style="display: flex; align-items: baseline; gap: 10px">
+          <span style="font-size: 11px; letter-spacing: 0.09em; text-transform: uppercase; color: #77837B">Al-Baqarah · 255</span>
+          <span style="font-family: Spectral, Georgia, serif; font-size: 14px; font-style: italic; color: #4A574F">Āyat al-Kursī</span>
+        </div>
+        <span style="font-size: 10.5px; letter-spacing: 0.05em; color: #96A099">single-ayah passage · reviewed v1.2</span>
+      </div>
+
+      <div dir="rtl" style="font-family: Amiri, 'Scheherazade New', serif; font-size: 29px; line-height: 2.15; color: #1A2521; text-align: right; margin-bottom: 30px">
+        اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ ۗ مَن ذَا الَّذِي يَشْفَعُ عِندَهُ إِلَّا بِإِذْنِهِ ۚ يَعْلَمُ مَا بَيْنَ أَيْدِيهِمْ وَمَا خَلْفَهُمْ ۖ وَلَا يُحِيطُونَ بِشَيْءٍ مِّنْ عِلْمِهِ إِلَّا بِمَا شَاءَ ۚ وَسِعَ كُرْسِيُّهُ السَّمَاوَاتِ وَالْأَرْضَ ۖ وَلَا يَئُودُهُ حِفْظُهُمَا ۚ وَهُوَ الْعَلِيُّ الْعَظِيمُ
+      </div>
+
+      <div style="font-family: Spectral, Georgia, serif; font-size: 18px; line-height: 1.72; color: #1A2521; margin-bottom: 9px">
+        Allah — there is no deity except Him, the Ever-Living, the Sustainer of existence. Neither drowsiness overtakes Him nor sleep. To Him belongs whatever is in the heavens and whatever is on the earth. Who is it that can intercede with Him except by His permission? He knows what is before them and what will be after them, and they encompass not a thing of His knowledge except for what He wills. His <em>Kursī</em> extends over the heavens and the earth, and their preservation tires Him not. And He is the Most High, the Most Great.
+      </div>
+      <div style="font-size: 11px; color: #96A099; margin-bottom: 30px">Ṣaḥīḥ International</div>
+
+      <div style="border-left: 2px solid #2E6F6A; background: #E7EFEC; padding: 17px 20px 18px; margin-bottom: 26px">
+        <div style="font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #235450; font-weight: 600; margin-bottom: 9px">In plain English</div>
+        <div style="font-family: Spectral, Georgia, serif; font-size: 16.5px; line-height: 1.68; color: #1A2521">
+          This is the Qur'an's fullest single statement about God. He alone is worthy of worship. He never tires, never sleeps, and never stops holding up what He made. Everything in the heavens and the earth is His, and nobody can speak up on anyone else's behalf without His permission. He knows what lies ahead of people and behind them, while they grasp nothing of His knowledge beyond what He allows them<span style="position: relative; display: inline-block"><span onClick="{{ togglePeek }}" style="color: #235450; border-bottom: 1px dotted #7FA8A2; cursor: pointer; font-family: 'IBM Plex Sans', sans-serif; font-size: 12.5px; padding: 0 3px; white-space: nowrap">20:110</span><div style="display: {{ peekDisplay }}; position: absolute; top: 26px; left: -140px; width: 348px; background: #FAFBF9; border: 1px solid #C3CDC6; border-radius: 4px; box-shadow: 0 10px 30px rgba(26,37,33,0.16); padding: 15px 16px 13px; z-index: 20; text-align: left">
+            <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 9px">
+              <span style="font-size: 11px; font-weight: 600; color: #1A2521">Ṭā Hā 20:110</span>
+              <span style="font-size: 9.5px; letter-spacing: 0.07em; text-transform: uppercase; color: #235450; background: #DCE9E6; padding: 2px 6px; border-radius: 2px">parallel</span>
+            </div>
+            <div dir="rtl" style="font-family: Amiri, serif; font-size: 17px; line-height: 1.9; color: #1A2521; margin-bottom: 7px">وَلَا يُحِيطُونَ بِهِ عِلْمًا</div>
+            <div style="font-family: Spectral, Georgia, serif; font-size: 13.5px; line-height: 1.55; color: #4A574F; margin-bottom: 11px">"…and they encompass it not in knowledge."</div>
+            <div style="border-top: 1px solid #E2E8E3; padding-top: 9px; display: flex; align-items: center; justify-content: space-between; gap: 10px">
+              <span style="font-size: 10.5px; color: #77837B; line-height: 1.4">Ibn Kathīr cites this verse here</span>
+              <span style="font-size: 10.5px; color: #235450; font-weight: 500; white-space: nowrap; cursor: pointer">Go to verse →</span>
+            </div>
+          </div></span>. His <em>Kursī</em> — a word scholars have read in more than one way — reaches over the heavens and the earth, and guarding them costs Him nothing.
+        </div>
+      </div>
+
+      <div style="border-top: 1px solid #D2DAD4">
+
+        <div onClick="{{ toggleContext }}" style="display: flex; align-items: center; justify-content: space-between; padding: 15px 2px; cursor: pointer; border-bottom: 1px solid {{ ctxRule }}">
+          <div style="display: flex; align-items: baseline; gap: 11px">
+            <span style="font-family: Spectral, Georgia, serif; font-size: 16px; font-weight: 500; color: #1A2521">Context</span>
+            <span style="font-size: 11px; color: #96A099">where it sits · setting of revelation</span>
+          </div>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#77837B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transform: rotate({{ ctxRotate }}deg)"><path d="M6 9l6 6 6-6"></path></svg>
+        </div>
+        <div style="display: {{ ctxDisplay }}; padding: 15px 2px 20px; border-bottom: 1px solid #D2DAD4">
+          <div style="font-family: Spectral, Georgia, serif; font-size: 15.5px; line-height: 1.68; color: #4A574F">
+            No specific occasion of revelation is established for this verse. It sits in a long stretch of Al-Baqarah on faith and rejection — directly after the call to spend before the Day comes when no bargaining helps (2:254), and directly before "there is no compulsion in religion" (2:256). Several sound reports record the Prophet ﷺ singling it out as the greatest verse in the Qur'an.
+          </div>
+          <div style="margin-top: 12px; font-size: 11px; color: #96A099">al-Wāḥidī, <em>Asbāb al-Nuzūl</em> — no report · virtue: Muslim, Ṣaḥīḥ 810 (Ubayy b. Kaʿb)</div>
+        </div>
+
+        <div onClick="{{ toggleViews }}" style="display: flex; align-items: center; justify-content: space-between; padding: 15px 2px; cursor: pointer; border-bottom: 1px solid {{ viewsRule }}">
+          <div style="display: flex; align-items: baseline; gap: 11px">
+            <span style="font-family: Spectral, Georgia, serif; font-size: 16px; font-weight: 500; color: #1A2521">What scholars said</span>
+            <span style="font-size: 11px; color: #96A099">1 agreement · 3 positions on <em>Kursī</em></span>
+          </div>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#77837B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transform: rotate({{ viewsRotate }}deg)"><path d="M6 9l6 6 6-6"></path></svg>
+        </div>
+        <div style="display: {{ viewsDisplay }}; padding: 16px 2px 20px; border-bottom: 1px solid #D2DAD4">
+          <div style="font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #235450; font-weight: 600; margin-bottom: 8px">Where they agree</div>
+          <div style="font-family: Spectral, Georgia, serif; font-size: 15.5px; line-height: 1.65; color: #1A2521; margin-bottom: 20px">
+            The verse affirms God's absolute dominion and self-sufficiency, and the <em>Kursī</em> is real and immense. Whatever it is, it implies no need or limitation in Him.
+          </div>
+          <div style="font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #8C6317; font-weight: 600; margin-bottom: 10px">Where they differ — what is the <em style="text-transform: none; letter-spacing: 0">Kursī</em>?</div>
+          <div style="display: flex; flex-direction: column; gap: 2px; background: #D2DAD4; border: 1px solid #D2DAD4; border-radius: 3px; overflow: hidden">
+            <div style="background: #FAFBF9; padding: 13px 15px">
+              <div style="font-family: Spectral, Georgia, serif; font-size: 15px; color: #1A2521; margin-bottom: 5px">A created thing, immense, distinct from and smaller than the ʿArsh.</div>
+              <div style="font-size: 11.5px; color: #77837B">Majority · Ibn Kathīr, al-Ṭabarī, al-Qurṭubī, al-Baghawī</div>
+            </div>
+            <div style="background: #FAFBF9; padding: 13px 15px">
+              <div style="font-family: Spectral, Georgia, serif; font-size: 15px; color: #1A2521; margin-bottom: 5px">His knowledge — the word standing for what His knowing encompasses.</div>
+              <div style="font-size: 11.5px; color: #77837B">Reported from Ibn ʿAbbās · recorded by al-Ṭabarī</div>
+            </div>
+            <div style="background: #FAFBF9; padding: 13px 15px">
+              <div style="font-family: Spectral, Georgia, serif; font-size: 15px; color: #1A2521; margin-bottom: 5px">The ʿArsh itself, the two words naming one thing.</div>
+              <div style="font-size: 11.5px; color: #77837B">al-Ḥasan al-Baṣrī · a minority reading, rejected by most</div>
+            </div>
+          </div>
+        </div>
+
+        <div onClick="{{ toggleTexts }}" style="display: flex; align-items: center; justify-content: space-between; padding: 15px 2px; cursor: pointer; border-bottom: 1px solid #D2DAD4">
+          <div style="display: flex; align-items: baseline; gap: 11px">
+            <span style="font-family: Spectral, Georgia, serif; font-size: 16px; font-weight: 500; color: #1A2521">Full tafsīr texts</span>
+            <span style="font-size: 11px; color: #96A099">6 works · verbatim, attributed</span>
+          </div>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#77837B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+
+<script data-dc-script data-props='{"depth":{"editor":"enum","options":["plain","study","scholar"],"default":"plain","section":"Reading"}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { depth: null, peek: false };
+  }
+  depth() {
+    return this.state.depth ?? this.props.depth ?? 'plain';
+  }
+  renderVals() {
+    const d = this.depth();
+    const seg = (name) => ({
+      bg: d === name ? '#2E6F6A' : 'transparent',
+      fg: d === name ? '#FAFBF9' : '#4A574F',
+      weight: d === name ? '600' : '400'
+    });
+    const p = seg('plain'), s = seg('study'), c = seg('scholar');
+    const ctxOpen = d !== 'plain';
+    const viewsOpen = d === 'scholar';
+    return {
+      setPlain: () => this.setState({ depth: 'plain' }),
+      setStudy: () => this.setState({ depth: 'study' }),
+      setScholar: () => this.setState({ depth: 'scholar' }),
+      togglePeek: () => this.setState({ peek: !this.state.peek }),
+      toggleContext: () => this.setState({ depth: ctxOpen ? 'plain' : 'study' }),
+      toggleViews: () => this.setState({ depth: viewsOpen ? 'study' : 'scholar' }),
+      toggleTexts: () => this.setState({ depth: 'scholar' }),
+      plainBg: p.bg, plainFg: p.fg, plainWeight: p.weight,
+      studyBg: s.bg, studyFg: s.fg, studyWeight: s.weight,
+      scholarBg: c.bg, scholarFg: c.fg, scholarWeight: c.weight,
+      peekDisplay: this.state.peek ? 'block' : 'none',
+      ctxDisplay: ctxOpen ? 'block' : 'none',
+      ctxRotate: ctxOpen ? 180 : 0,
+      ctxRule: ctxOpen ? 'transparent' : '#D2DAD4',
+      viewsDisplay: viewsOpen ? 'block' : 'none',
+      viewsRotate: viewsOpen ? 180 : 0,
+      viewsRule: viewsOpen ? 'transparent' : '#D2DAD4'
+    };
+  }
+}
+</script>
+</body>
+</html>

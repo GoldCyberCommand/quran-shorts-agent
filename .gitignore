@@ -17,3 +17,7 @@ __pycache__/
 build/
 dist/
 .DS_Store
+
+# Seeded design-canvas payloads (2MB+ generated; re-seed from the .dc.html working files)
+docs/tafsir-app/mockups/*.html
+!docs/tafsir-app/mockups/*.dc.html
