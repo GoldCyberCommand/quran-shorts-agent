@@ -1,0 +1,180 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+  <style>
+    body { margin: 0; background: #F3F5F3; color: #1A2521; font-family: 'IBM Plex Sans', system-ui, sans-serif; }
+    a { color: #235450; } a:hover { color: #2E6F6A; }
+    * { box-sizing: border-box; }
+  </style>
+</helmet>
+
+<div style="width: 1120px; height: 800px; background: #F3F5F3; display: flex; flex-direction: column; overflow: hidden">
+
+  <div style="flex-grow: 1; display: flex; overflow: hidden">
+
+    <div style="width: 470px; flex-shrink: 0; border-right: 1px solid #D2DAD4; padding: 28px 28px; background: #FAFBF9; overflow: hidden">
+      <div style="font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #96A099; margin-bottom: 4px">Recitation</div>
+      <div style="font-family: Spectral, Georgia, serif; font-size: 22px; font-weight: 600; color: #1A2521; margin-bottom: 24px">Playback</div>
+
+      <div style="font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #77837B; margin-bottom: 10px">Mode</div>
+      <div style="display: flex; flex-direction: column; gap: 2px; background: #D2DAD4; border: 1px solid #D2DAD4; border-radius: 4px; overflow: hidden; margin-bottom: 24px">
+        <div style="background: #E7EFEC; padding: 11px 14px; border-left: 3px solid #2E6F6A">
+          <div style="font-size: 13px; font-weight: 600; color: #1A2521">Single ayah</div>
+          <div style="font-size: 11px; color: #4A574F; margin-top: 2px">Plays once and stops. The default.</div>
+        </div>
+        <div style="background: #FAFBF9; padding: 11px 14px; border-left: 3px solid transparent">
+          <div style="font-size: 13px; color: #1A2521">Through the passage</div>
+        </div>
+        <div style="background: #FAFBF9; padding: 11px 14px; border-left: 3px solid transparent">
+          <div style="font-size: 13px; color: #1A2521">Through the surah</div>
+        </div>
+        <div style="background: #FAFBF9; padding: 11px 14px; border-left: 3px solid transparent; display: flex; align-items: center; justify-content: space-between">
+          <div>
+            <div style="font-size: 13px; color: #1A2521">Repeat this ayah</div>
+            <div style="font-size: 11px; color: #77837B; margin-top: 2px">For memorising</div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 6px">
+            <span style="font-size: 11px; color: #77837B">×</span>
+            <span style="font-size: 12px; color: #1A2521; border: 1px solid #D2DAD4; border-radius: 3px; padding: 3px 9px; background: #F3F5F3">7</span>
+          </div>
+        </div>
+        <div style="background: #FAFBF9; padding: 11px 14px; border-left: 3px solid transparent">
+          <div style="font-size: 13px; color: #1A2521">Follow along</div>
+          <div style="font-size: 11px; color: #77837B; margin-top: 2px">Audio drives the scroll; word highlighting where the reciter has timings</div>
+        </div>
+      </div>
+
+      <div style="border: 1px solid #D2DAD4; border-radius: 4px; padding: 14px 15px; background: #F3F5F3">
+        <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 14px">
+          <div>
+            <div style="font-size: 13px; font-weight: 600; color: #1A2521; margin-bottom: 3px">Auto-read the next ayah</div>
+            <div style="font-size: 11px; color: #4A574F; line-height: 1.5">When you move to the next ayah, its recitation starts on its own.</div>
+          </div>
+          <span style="width: 34px; height: 19px; border-radius: 10px; background: #C3CDC6; position: relative; display: inline-block; flex-shrink: 0; margin-top: 2px">
+            <span style="position: absolute; top: 2px; left: 2px; width: 15px; height: 15px; border-radius: 50%; background: #FAFBF9"></span>
+          </span>
+        </div>
+        <div style="font-size: 10.5px; color: #8C6317; background: #F0E7D2; border: 1px solid #E0D2B0; border-radius: 3px; padding: 8px 10px; margin-top: 11px; line-height: 1.45">
+          Ships <strong>off</strong>. Audio starting by itself is the fastest way to embarrass someone in a quiet room — but it is one tap away, and it stays on once set.
+        </div>
+      </div>
+    </div>
+
+    <div style="flex-grow: 1; padding: 28px 28px; overflow: hidden">
+      <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 20px">
+        <div>
+          <div style="font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #96A099; margin-bottom: 4px">Offline</div>
+          <div style="font-family: Spectral, Georgia, serif; font-size: 22px; font-weight: 600; color: #1A2521">Downloads</div>
+        </div>
+        <div style="text-align: right">
+          <div style="font-size: 11px; color: #77837B">On this machine</div>
+          <div style="font-family: ui-monospace, Menlo, monospace; font-size: 14px; color: #1A2521">412 MB</div>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 2px; background: #D2DAD4; border: 1px solid #D2DAD4; border-radius: 4px; overflow: hidden; margin-bottom: 22px">
+        <div style="background: #E7EFEC; padding: 12px 15px; display: flex; align-items: center; justify-content: space-between; border-left: 3px solid #2E6F6A">
+          <div>
+            <div style="font-size: 13.5px; font-weight: 600; color: #1A2521">Maḥmūd Khalīl al-Ḥuṣarī</div>
+            <div style="font-size: 11px; color: #4A574F; margin-top: 2px">Murattal · 128 kbps · word timings available</div>
+          </div>
+          <div style="text-align: right">
+            <div style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; color: #235450">11 / 30 juz</div>
+            <div style="font-size: 10.5px; color: #77837B">318 MB</div>
+          </div>
+        </div>
+        <div style="background: #FAFBF9; padding: 12px 15px; display: flex; align-items: center; justify-content: space-between; border-left: 3px solid transparent">
+          <div>
+            <div style="font-size: 13.5px; color: #1A2521">ʿAbd al-Bāsit ʿAbd al-Ṣamad</div>
+            <div style="font-size: 11px; color: #77837B; margin-top: 2px">Mujawwad · 128 kbps</div>
+          </div>
+          <div style="text-align: right">
+            <div style="font-family: ui-monospace, Menlo, monospace; font-size: 12px; color: #77837B">3 / 30 juz</div>
+            <div style="font-size: 10.5px; color: #96A099">94 MB</div>
+          </div>
+        </div>
+        <div style="background: #FAFBF9; padding: 12px 15px; display: flex; align-items: center; justify-content: space-between; border-left: 3px solid transparent">
+          <div>
+            <div style="font-size: 13.5px; color: #1A2521">Mishary Rāshid al-ʿAfāsy</div>
+            <div style="font-size: 11px; color: #77837B; margin-top: 2px">Murattal · 128 kbps · word timings available</div>
+          </div>
+          <span style="font-size: 11px; color: #235450; border: 1px solid #B7CFC9; border-radius: 3px; padding: 4px 10px; background: #F3F5F3">Nothing yet</span>
+        </div>
+      </div>
+
+      <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 10px">
+        <span style="font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: #77837B">al-Ḥuṣarī — by juz</span>
+        <span style="font-size: 10.5px; color: #96A099">~28 MB each · delete any juz without losing the rest</span>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); gap: 5px">
+        <sc-for list="{{ juz }}" as="j" hint-placeholder-count="30">
+          <div style="aspect-ratio: 1; border-radius: 3px; border: 1px solid {{ j.border }}; background: {{ j.bg }}; color: {{ j.fg }}; font-family: ui-monospace, Menlo, monospace; font-size: 11px; display: flex; align-items: center; justify-content: center">{{ j.n }}</div>
+        </sc-for>
+      </div>
+      <div style="display: flex; align-items: center; gap: 18px; margin-top: 12px; font-size: 10.5px; color: #77837B">
+        <span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 11px; height: 11px; border-radius: 2px; background: #2E6F6A"></span>on disk</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 11px; height: 11px; border-radius: 2px; background: #B7CFC9"></span>downloading</span>
+        <span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 11px; height: 11px; border-radius: 2px; background: #FAFBF9; border: 1px solid #D2DAD4"></span>not downloaded</span>
+      </div>
+
+      <div style="font-size: 10.5px; color: #96A099; margin-top: 16px; line-height: 1.55; border-top: 1px solid #D2DAD4; padding-top: 13px">
+        A whole reciter is roughly 800 MB–1.2 GB, so packs come by juz rather than all-or-nothing. Audio is fetched from the licensed source onto your machine for your own use — never bundled into the installer, never re-served.
+      </div>
+    </div>
+  </div>
+
+  <div style="height: 66px; flex-shrink: 0; background: #FAFBF9; border-top: 1px solid #D2DAD4; display: flex; align-items: center; gap: 20px; padding: 0 24px">
+    <div style="display: flex; align-items: center; gap: 12px; flex-shrink: 0">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#77837B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 20L9 12l10-8v16z"></path><path d="M5 4v16"></path></svg>
+      <div style="width: 36px; height: 36px; border-radius: 50%; background: #2E6F6A; display: flex; align-items: center; justify-content: center">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#FAFBF9"><path d="M7 4l12 8-12 8V4z"></path></svg>
+      </div>
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#77837B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4l10 8-10 8V4z"></path><path d="M19 4v16"></path></svg>
+    </div>
+
+    <div style="flex-grow: 1; min-width: 0">
+      <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 5px">
+        <span style="font-size: 12px; color: #1A2521"><span style="font-family: ui-monospace, Menlo, monospace; color: #235450">2:255</span> <span style="color: #77837B">· al-Ḥuṣarī · single ayah</span></span>
+        <span style="font-family: ui-monospace, Menlo, monospace; font-size: 11px; color: #96A099">0:34 / 1:12</span>
+      </div>
+      <div style="height: 4px; border-radius: 2px; background: #D2DAD4; position: relative">
+        <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 47%; border-radius: 2px; background: #2E6F6A"></div>
+      </div>
+    </div>
+
+    <div style="display: flex; align-items: center; gap: 8px; flex-shrink: 0">
+      <span style="font-size: 11px; color: #4A574F; border: 1px solid #D2DAD4; border-radius: 3px; padding: 4px 9px; background: #F3F5F3">1.0×</span>
+      <span style="font-size: 11px; color: #4A574F; border: 1px solid #D2DAD4; border-radius: 3px; padding: 4px 9px; background: #F3F5F3">Repeat ×7</span>
+    </div>
+  </div>
+
+</div>
+</x-dc>
+
+<script data-dc-script data-props='{}'>
+class Component extends DCLogic {
+  renderVals() {
+    const done = 11, active = 12;
+    const juz = [];
+    for (let n = 1; n <= 30; n++) {
+      const state = n <= done ? 'done' : (n === active ? 'busy' : 'none');
+      juz.push({
+        n: n,
+        bg: state === 'done' ? '#2E6F6A' : (state === 'busy' ? '#B7CFC9' : '#FAFBF9'),
+        fg: state === 'done' ? '#FAFBF9' : (state === 'busy' ? '#1A2521' : '#96A099'),
+        border: state === 'none' ? '#D2DAD4' : 'transparent'
+      });
+    }
+    return { juz: juz };
+  }
+}
+</script>
+</body>
+</html>

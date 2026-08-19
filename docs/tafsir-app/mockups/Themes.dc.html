@@ -1,0 +1,193 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+  <style>
+    body { margin: 0; font-family: 'IBM Plex Sans', system-ui, sans-serif; }
+    a { color: #235450; } a:hover { color: #2E6F6A; }
+    * { box-sizing: border-box; }
+  </style>
+</helmet>
+
+<div style="width: 1120px; height: 860px; background: {{ bg }}; display: flex; overflow: hidden">
+
+  <div style="width: 300px; flex-shrink: 0; background: {{ surface }}; border-right: 1px solid {{ rule }}; padding: 26px 24px; display: flex; flex-direction: column; gap: 26px; overflow: hidden">
+
+    <div>
+      <div style="font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: {{ ink3 }}; margin-bottom: 4px">Appearance</div>
+      <div style="font-family: Spectral, Georgia, serif; font-size: 21px; font-weight: 600; color: {{ ink }}">Theme</div>
+    </div>
+
+    <div>
+      <div style="font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: {{ ink3 }}; margin-bottom: 10px">Ground</div>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px">
+        <sc-for list="{{ grounds }}" as="g" hint-placeholder-count="4">
+          <div onClick="{{ g.pick }}" style="cursor: pointer; border: 1px solid {{ g.border }}; border-radius: 4px; padding: 9px 10px; background: {{ g.chipBg }}; display: flex; align-items: center; gap: 8px">
+            <span style="width: 15px; height: 15px; border-radius: 3px; background: {{ g.dot }}; border: 1px solid {{ rule }}; flex-shrink: 0"></span>
+            <span style="font-size: 12px; color: {{ ink }}; font-weight: {{ g.weight }}">{{ g.label }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div>
+      <div style="font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: {{ ink3 }}; margin-bottom: 10px">Accent</div>
+      <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 9px">
+        <sc-for list="{{ accents }}" as="a" hint-placeholder-count="8">
+          <div onClick="{{ a.pick }}" style="cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 5px">
+            <span style="width: 34px; height: 34px; border-radius: 50%; background: {{ a.colour }}; box-shadow: {{ a.ring }}"></span>
+            <span style="font-size: 9.5px; color: {{ ink3 }}">{{ a.label }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <div>
+      <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 9px">
+        <span style="font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: {{ ink3 }}">Custom hue</span>
+        <span style="font-family: ui-monospace, Menlo, monospace; font-size: 10.5px; color: {{ accent }}">{{ hueLabel }}</span>
+      </div>
+      <div style="position: relative; height: 12px; border-radius: 6px; background: linear-gradient(90deg, oklch(0.62 0.15 20), oklch(0.62 0.15 80), oklch(0.62 0.15 140), oklch(0.62 0.15 200), oklch(0.62 0.15 260), oklch(0.62 0.15 320), oklch(0.62 0.15 380))">
+        <span style="position: absolute; top: -3px; left: {{ huePct }}; width: 18px; height: 18px; margin-left: -9px; border-radius: 50%; background: {{ accent }}; border: 2px solid {{ surface }}; box-shadow: 0 1px 4px rgba(0,0,0,0.3)"></span>
+      </div>
+      <div style="font-size: 10.5px; color: {{ ink3 }}; margin-top: 9px; line-height: 1.5">Any hue works. Lightness and chroma are fixed per role, so every accent clears contrast on every ground by construction.</div>
+    </div>
+
+    <div style="margin-top: auto; border-top: 1px solid {{ rule }}; padding-top: 14px">
+      <div style="font-size: 10.5px; color: {{ ink2 }}; line-height: 1.55">The accent never touches the Qur'anic text. Arabic and translation stay full-contrast ink on ground at every setting.</div>
+    </div>
+
+  </div>
+
+  <div style="flex-grow: 1; overflow: hidden; padding: 40px 46px">
+
+    <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 24px">
+      <div style="display: flex; align-items: baseline; gap: 10px">
+        <span style="font-size: 11px; letter-spacing: 0.09em; text-transform: uppercase; color: {{ ink3 }}">Al-Baqarah · 255</span>
+        <span style="font-family: Spectral, Georgia, serif; font-size: 14px; font-style: italic; color: {{ ink2 }}">Āyat al-Kursī</span>
+      </div>
+      <span style="font-size: 10.5px; color: {{ ink3 }}">{{ themeLabel }}</span>
+    </div>
+
+    <div dir="rtl" style="font-family: Amiri, 'Scheherazade New', serif; font-size: 27px; line-height: 2.15; color: {{ ink }}; text-align: right; margin-bottom: 26px">
+      اللَّهُ لَا إِلَٰهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَّهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ
+    </div>
+
+    <div style="font-family: Spectral, Georgia, serif; font-size: 17px; line-height: 1.72; color: {{ ink }}; margin-bottom: 8px">
+      Allah — there is no deity except Him, the Ever-Living, the Sustainer of existence. Neither drowsiness overtakes Him nor sleep. To Him belongs whatever is in the heavens and whatever is on the earth.
+    </div>
+    <div style="font-size: 11px; color: {{ ink3 }}; margin-bottom: 26px">Ṣaḥīḥ International</div>
+
+    <div style="border-left: 2px solid {{ accent }}; background: {{ accentSoft }}; padding: 16px 19px 17px; margin-bottom: 22px">
+      <div style="font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: {{ accent }}; font-weight: 600; margin-bottom: 8px">In plain English</div>
+      <div style="font-family: Spectral, Georgia, serif; font-size: 16px; line-height: 1.66; color: {{ ink }}">
+        This is the Qur'an's fullest single statement about God. He alone is worthy of worship. He never tires, never sleeps, and never stops holding up what He made — and everything in the heavens and the earth is His<span style="color: {{ accent }}; border-bottom: 1px dotted {{ accent }}; font-family: 'IBM Plex Sans', sans-serif; font-size: 12.5px; padding: 0 3px">20:110</span>.
+      </div>
+    </div>
+
+    <div style="border-top: 1px solid {{ rule }}">
+      <div style="display: flex; align-items: center; justify-content: space-between; padding: 14px 2px; border-bottom: 1px solid {{ rule }}">
+        <div style="display: flex; align-items: baseline; gap: 11px">
+          <span style="font-family: Spectral, Georgia, serif; font-size: 15.5px; font-weight: 500; color: {{ ink }}">What scholars said</span>
+          <span style="font-size: 11px; color: {{ ink3 }}">1 agreement · 3 positions</span>
+        </div>
+        <span style="font-size: 13px; color: {{ ink3 }}">⌄</span>
+      </div>
+      <div style="display: flex; align-items: center; justify-content: space-between; padding: 14px 2px">
+        <div style="display: flex; align-items: baseline; gap: 11px">
+          <span style="font-family: Spectral, Georgia, serif; font-size: 15.5px; font-weight: 500; color: {{ ink }}">Full tafsīr texts</span>
+          <span style="font-size: 11px; color: {{ ink3 }}">6 works</span>
+        </div>
+        <span style="font-size: 13px; color: {{ ink3 }}">⌄</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+
+<script data-dc-script data-props='{"ground":{"editor":"enum","options":["paper","sepia","night","black"],"default":"paper","section":"Theme"},"accent":{"editor":"enum","options":["green","blue","purple","red","gold","pink","brown","grey"],"default":"green","section":"Theme"}}'>
+const GROUNDS = {
+  paper: { label: 'Paper', bgL: 0.975, bgC: 0.006, surL: 0.995, surC: 0.004, inkL: 0.22, inkC: 0.020, ink2L: 0.46, ink2C: 0.016, ink3L: 0.62, ink3C: 0.012, ruleL: 0.885, ruleC: 0.010, accL: 0.50, softL: 0.945, softC: 0.035 },
+  sepia: { label: 'Sepia', hue: 78, bgL: 0.935, bgC: 0.024, surL: 0.965, surC: 0.020, inkL: 0.27, inkC: 0.030, ink2L: 0.47, ink2C: 0.024, ink3L: 0.62, ink3C: 0.020, ruleL: 0.865, ruleC: 0.026, accL: 0.47, softL: 0.900, softC: 0.045 },
+  night: { label: 'Night', bgL: 0.225, bgC: 0.012, surL: 0.275, surC: 0.014, inkL: 0.925, inkC: 0.008, ink2L: 0.72, ink2C: 0.012, ink3L: 0.58, ink3C: 0.012, ruleL: 0.360, ruleC: 0.016, accL: 0.79, softL: 0.320, softC: 0.045 },
+  black: { label: 'Black', bgL: 0.115, bgC: 0.004, surL: 0.170, surC: 0.008, inkL: 0.940, inkC: 0.006, ink2L: 0.73, ink2C: 0.010, ink3L: 0.56, ink3C: 0.010, ruleL: 0.285, ruleC: 0.012, accL: 0.81, softL: 0.245, softC: 0.050 }
+};
+const ACCENTS = [
+  { key: 'green',  label: 'Green',  hue: 162, c: 0.100 },
+  { key: 'blue',   label: 'Blue',   hue: 250, c: 0.110 },
+  { key: 'purple', label: 'Purple', hue: 302, c: 0.110 },
+  { key: 'red',    label: 'Red',    hue: 27,  c: 0.130 },
+  { key: 'gold',   label: 'Gold',   hue: 82,  c: 0.105 },
+  { key: 'pink',   label: 'Pink',   hue: 352, c: 0.110 },
+  { key: 'brown',  label: 'Brown',  hue: 55,  c: 0.062 },
+  { key: 'grey',   label: 'Grey',   hue: 250, c: 0.014 }
+];
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { ground: null, accent: null };
+  }
+  ground() { return this.state.ground ?? this.props.ground ?? 'paper'; }
+  accentKey() { return this.state.accent ?? this.props.accent ?? 'green'; }
+
+  renderVals() {
+    const gKey = this.ground();
+    const g = GROUNDS[gKey] ?? GROUNDS.paper;
+    const a = ACCENTS.find((x) => x.key === this.accentKey()) ?? ACCENTS[0];
+
+    // Ground neutrals borrow the accent hue at very low chroma — a chosen neutral,
+    // not an inherited grey. Sepia pins its own warm hue.
+    const gh = g.hue ?? a.hue;
+    const cScale = Math.min(1, a.c / 0.11);
+    const ok = (l, c, h) => 'oklch(' + l + ' ' + (Math.round(c * 1000) / 1000) + ' ' + h + ')';
+
+    const bg = ok(g.bgL, g.bgC * cScale, gh);
+    const surface = ok(g.surL, g.surC * cScale, gh);
+    const rule = ok(g.ruleL, g.ruleC * cScale, gh);
+    const ink = ok(g.inkL, g.inkC * cScale, gh);
+    const ink2 = ok(g.ink2L, g.ink2C * cScale, gh);
+    const ink3 = ok(g.ink3L, g.ink3C * cScale, gh);
+    const accent = ok(g.accL, a.c, a.hue);
+    const accentSoft = ok(g.softL, g.softC * cScale, a.hue);
+
+    const grounds = Object.keys(GROUNDS).map((k) => {
+      const gg = GROUNDS[k];
+      const hh = gg.hue ?? a.hue;
+      const on = k === gKey;
+      return {
+        label: gg.label,
+        dot: ok(gg.bgL, gg.bgC * cScale, hh),
+        border: on ? accent : rule,
+        chipBg: on ? accentSoft : 'transparent',
+        weight: on ? '600' : '400',
+        pick: () => this.setState({ ground: k })
+      };
+    });
+
+    const accents = ACCENTS.map((x) => ({
+      label: x.label,
+      colour: ok(g.accL, x.c, x.hue),
+      ring: x.key === a.key ? '0 0 0 2px ' + surface + ', 0 0 0 4px ' + ok(g.accL, x.c, x.hue) : 'none',
+      pick: () => this.setState({ accent: x.key })
+    }));
+
+    return {
+      bg, surface, rule, ink, ink2, ink3, accent, accentSoft,
+      grounds, accents,
+      hueLabel: 'hue ' + a.hue,
+      huePct: Math.round((a.hue / 360) * 100) + '%',
+      themeLabel: g.label + ' · ' + a.label
+    };
+  }
+}
+</script>
+</body>
+</html>

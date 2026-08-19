@@ -1,14 +1,23 @@
 {
+  "pages": [
+    { "id": "page-1", "name": "Reading & navigation" },
+    { "id": "page-2", "name": "Appearance & audio" }
+  ],
   "artboards": [
-    { "file": "Main.dc.html", "title": "Reader — depth toggle + peek", "x": 0, "y": 0, "w": 1120, "h": 900 },
-    { "file": "Scholar.dc.html", "title": "Scholar depth — ikhtilāf", "x": 1200, "y": 0, "w": 1120, "h": 900 },
-    { "file": "Palette.dc.html", "title": "⌘K — jump to anything", "x": 0, "y": 1120, "w": 1120, "h": 760 },
-    { "file": "Thread.dc.html", "title": "Topic thread", "x": 1200, "y": 1120, "w": 1120, "h": 760 },
-    { "file": "Peek.dc.html", "title": "Cross-reference peek — anatomy", "x": 2400, "y": 0, "w": 640, "h": 640 }
+    { "file": "Main.dc.html", "title": "Reader — depth toggle + peek", "page": "page-1", "x": 0, "y": 0, "w": 1120, "h": 900 },
+    { "file": "Scholar.dc.html", "title": "Scholar depth — ikhtilāf", "page": "page-1", "x": 1200, "y": 0, "w": 1120, "h": 900 },
+    { "file": "Peek.dc.html", "title": "Cross-reference peek — anatomy", "page": "page-1", "x": 2400, "y": 0, "w": 640, "h": 640 },
+    { "file": "Palette.dc.html", "title": "⌘K — jump to anything", "page": "page-1", "x": 0, "y": 1020, "w": 1120, "h": 760 },
+    { "file": "Thread.dc.html", "title": "Topic thread", "page": "page-1", "x": 1200, "y": 1020, "w": 1120, "h": 760 },
+
+    { "file": "Themes.dc.html", "title": "Themes — live, 4 grounds × 8 accents", "page": "page-2", "x": 0, "y": 0, "w": 1120, "h": 860 },
+    { "file": "Script.dc.html", "title": "Arabic script & word-by-word", "page": "page-2", "x": 1200, "y": 0, "w": 780, "h": 900 },
+    { "file": "Audio.dc.html", "title": "Recitation — playback & downloads", "page": "page-2", "x": 2060, "y": 0, "w": 1120, "h": 800 }
   ],
   "annotations": [
     {
       "id": "note-depth",
+      "page": "page-1",
       "x": -460,
       "y": 0,
       "w": 380,
@@ -16,6 +25,7 @@
     },
     {
       "id": "note-peek",
+      "page": "page-1",
       "x": -460,
       "y": 260,
       "w": 380,
@@ -23,6 +33,7 @@
     },
     {
       "id": "note-ikhtilaf",
+      "page": "page-1",
       "x": -460,
       "y": 520,
       "w": 380,
@@ -30,6 +41,7 @@
     },
     {
       "id": "note-links",
+      "page": "page-1",
       "x": -460,
       "y": 800,
       "w": 380,
@@ -37,11 +49,52 @@
     },
     {
       "id": "note-clean",
+      "page": "page-1",
       "x": -460,
       "y": 1120,
       "w": 380,
       "text": "What 'clean' rules out.\n\nNo permanent sidebar. No tab bar of eight tafsīr works. No verse cards in a feed. No streaks or badges. Structure carried by type and space, not boxes — except the one boundary that is non-negotiable: our summary never looks like a scholar's words."
+    },
+    {
+      "id": "note-themes",
+      "page": "page-2",
+      "x": -460,
+      "y": 0,
+      "w": 380,
+      "text": "One engine, two axes — this one is live.\n\nClick any ground and any accent. All 32 combinations come from a single hue value: lightness and chroma are fixed per role, so every accent clears contrast on every ground by construction, not by luck. No skin files to maintain.\n\nThe grounds borrow the accent's hue at very low chroma — a chosen neutral, not an inherited grey."
+    },
+    {
+      "id": "note-accent-rule",
+      "page": "page-2",
+      "x": -460,
+      "y": 380,
+      "w": 380,
+      "text": "The accent never touches the Qur'an.\n\nSwitch to Red or Purple and watch: the Arabic and the translation do not move off full-contrast ink. The accent lives in chrome, links, the summary rule and focus. A 'purple theme' must never mean purple scripture."
+    },
+    {
+      "id": "note-script",
+      "page": "page-2",
+      "x": -460,
+      "y": 660,
+      "w": 380,
+      "text": "Editions differ in letters, not fonts.\n\nCompare the four bismillah samples — Uthmani carries the alef wasla and superscript alef, IndoPak follows South Asian conventions. That is orthography, so it is a text edition, not a font setting. The font is chosen separately."
+    },
+    {
+      "id": "note-mushaf",
+      "page": "page-2",
+      "x": -460,
+      "y": 960,
+      "w": 380,
+      "text": "Why the mushaf page is its own view.\n\nPage-perfect Madinah rendering uses one font file per page — 604 of them — where each glyph is a whole word. It cannot reflow, resize freely or be searched. A tafsīr column needs all three, so the printed page gets its own screen instead."
+    },
+    {
+      "id": "note-audio",
+      "page": "page-2",
+      "x": -460,
+      "y": 1260,
+      "w": 380,
+      "text": "Per-ayah files make single-ayah exact.\n\nRecitations come one file per ayah, so 'play this ayah only' needs no seeking inside a surah-length track — no drift, no clipped endings. Packs download by juz (~28 MB) rather than whole-Qur'an (~1 GB).\n\nAuto-advance ships OFF."
     }
   ],
-  "launch": { "view": "canvas" }
+  "launch": { "view": "canvas", "page": "page-2" }
 }
