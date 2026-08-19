@@ -92,7 +92,76 @@ manuscript-derived digital texts (altafsir.com, Shamela) and record the edition 
 
 ---
 
-## 6. Acquisition routes
+## 6. Arabic scripts, fonts and mushaf layouts
+
+### Text editions (flowing mode)
+
+| Edition | Source | Licence | Public release |
+|---|---|---|---|
+| Uthmani (KFGQPC Ḥafṣ) | Tanzil / QUL | CC BY (Tanzil) | ✅ |
+| Uthmani simple | Tanzil | CC BY | ✅ |
+| IndoPak | QUL | per-resource; verify | 🟡 |
+| Imlaei | Tanzil | CC BY | ✅ |
+
+### Fonts
+
+| Font | For | Notes |
+|---|---|---|
+| Amiri | Flowing Arabic | Open (OFL). A naskh revival; the safe default. |
+| Scheherazade New | Flowing Arabic | Open (OFL). Good diacritic clarity. |
+| Noto Naskh Arabic | Flowing Arabic | Open (OFL). |
+| KFGQPC Uthmanic Ḥafṣ | Flowing Arabic | King Fahd Complex. Free to use; confirm redistribution terms. |
+| **QCF v1 / v2 / v4** | **Page view only** | **604 files — one per mushaf page**, each glyph a whole word. Page-perfect and non-reflowing. Confirm King Fahd Complex terms before shipping. |
+| Digital Khatt | Either | Newer open rendering engine; worth evaluating. |
+
+### Mushaf layouts (page view) — all from QUL
+
+Madinah V1 (1405H, 604pp, 15 lines) · Madinah V2 (1421H, 604pp, 15 lines) · QCF v4
+(1441H) · IndoPak 15-line (610pp) · IndoPak 16-line (548pp, nastaʿlīq) · Digital Khatt.
+QUL lists twelve layouts in total.
+
+### Word-by-word
+
+Word-level Arabic, translation and transliteration (~78,000 words) from QUL, plus tajwīd
+data. Licence varies by contributed resource — check each. **QAAM already renders
+word-by-word tajwīd-coloured text**; reuse that work rather than rebuilding it.
+
+---
+
+## 7. Recitations
+
+**Route:** per-ayah MP3s named `SSSAAA.mp3` (`002255.mp3` = 2:255), as distributed by
+everyayah.com (~44 reciters, mostly 128 kbps) and addressable through the Quran
+Foundation API's recitation endpoints. Per-ayah files are what make single-ayah playback
+exact.
+
+| Reciter | Style | Segment timestamps | Public release |
+|---|---|---|---|
+| Maḥmūd Khalīl al-Ḥuṣarī | Murattal / muʿallim | some sets | 🟡 |
+| ʿAbd al-Bāsit ʿAbd al-Ṣamad | Murattal & mujawwad | partial | 🟡 |
+| Muḥammad Ṣiddīq al-Minshāwī | Murattal & mujawwad | partial | 🟡 |
+| ʿAbd al-Raḥmān al-Sudais | Murattal | partial | 🟡 |
+| Saʿūd al-Shuraim | Murattal | partial | 🟡 |
+| Mishary Rāshid al-ʿAfāsy | Murattal | yes | 🟡 |
+| Muḥammad Ayyūb | Murattal | partial | 🟡 |
+| Yāsir al-Dussarī | Murattal | partial | 🟡 |
+
+**Rights position.** everyayah.com's own guidance is to verify usage rights before
+redistributing. So the shipped position is: **the app fetches audio from the licensed
+source onto the reader's own machine for personal use. It never bundles audio in the
+installer and never re-serves it.** That is legal to build and ship today, and it
+becomes a switch — not a rewrite — if a reciter's rights are later cleared.
+
+**Storage.** A complete reciter at 128 kbps is roughly 800 MB–1.2 GB; a juz is ~25–40 MB.
+Packs download per juz, with size shown before the download and per-juz delete after.
+
+**Segment timestamps** (word-level highlighting) exist for some reciters and not others.
+The UI must degrade honestly: ayah-level highlighting where word timings are missing,
+never guessed timings.
+
+---
+
+## 8. Acquisition routes
 
 | Route | What it gives | Ayah-aligned? | Notes |
 |---|---|---|---|
@@ -103,7 +172,7 @@ manuscript-derived digital texts (altafsir.com, Shamela) and record the edition 
 
 ---
 
-## 7. Permission conversations to open in Phase 1
+## 9. Permission conversations to open in Phase 1
 
 | Counterparty | Asking for | Assessment |
 |---|---|---|
@@ -117,7 +186,7 @@ plan), and exactly how attribution will appear in the app.
 
 ---
 
-## 8. Attribution requirements (must appear in-app)
+## 10. Attribution requirements (must appear in-app)
 
 - Tanzil: source credit + link to tanzil.net on the About/Sources screen.
 - Every tafsīr and translation: author, translator, publisher, edition, and — where

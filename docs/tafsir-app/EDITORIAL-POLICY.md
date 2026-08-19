@@ -142,7 +142,7 @@ like any other.
 - Not a fatwa service.
 - Not a substitute for a teacher. The app says so, in the app.
 - Not a position in an intra-Muslim polemic. **Sunni Islam only** — classical and
-  modern — is the declared scope (see PLAN.md §3), stated plainly in-app so a reader
+  modern — is the declared scope (see PLAN.md §4), stated plainly in-app so a reader
   always knows what tradition they are reading. Declared scope is honest; silent scope
   presented as neutrality is not. Within that scope the four madhāhib and the range of
   recognised Sunni positions are all represented; no one school speaks for the whole.

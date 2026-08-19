@@ -14,14 +14,16 @@
 reach of both the layman and the serious student — in one app, on one screen, without
 either of them being handed a lesser version.
 
-Two things have to be true at once for that to work. The content has to be
-comprehensive and honestly sourced (§4–§8). And the app has to be **easy to move
-through** — clean enough that nothing distracts from the text, and connected enough
-that you can follow an explanation from one verse to another without losing your place
-(§2). Navigation is not polish here; it is half the product.
+Three things have to be true at once for that to work. The content has to be
+comprehensive and honestly sourced (§5–§9). The app has to be **easy to move through** —
+clean enough that nothing distracts from the text, and connected enough that you can
+follow an explanation from one verse to another without losing your place (§2). And the
+text has to **look and sound the way the reader wants it to** — their script, their
+colours, their reciter (§3). Navigation and presentation are not polish here; between
+them they are half the product.
 
 Scope is **Sunni Islam only** — classical and modern, stated plainly so a reader always
-knows what tradition they are reading (see §3 and §8 rule 10).
+knows what tradition they are reading (see §4 and §9 rule 10).
 
 For **every ayah of the Qur'an**, four layers of understanding, stacked so a reader
 can stop at whatever depth they came for:
@@ -96,13 +98,13 @@ screen, same content, different entry point.
 *"Jump from verse to verse wherever there is a linked explanation."*
 
 This is a **content** feature before it is a UI feature. The links have to exist in the
-data, which means the pipeline has to extract them (stage 4b, see §7).
+data, which means the pipeline has to extract them (stage 4b, see §8).
 
 **Where links come from — and why that matters.** The valuable links are the ones
 *scholars themselves assert*. When Ibn Kathīr explains 2:2 by citing 41:44, that is a
 scholar-asserted link: it is meaningful, it is citable, and it is reviewable. Keyword
 similarity and embedding proximity produce plausible-looking links that no scholar ever
-drew — they are unciteable, and under §8 rule 1 they cannot ship. So:
+drew — they are unciteable, and under §9 rule 1 they cannot ship. So:
 
 - **Primary source of links:** every ayah a mufassir cites while commenting on a passage,
   extracted during stage 4 with the citing source recorded on the edge.
@@ -166,7 +168,7 @@ Clean is a set of constraints, not a mood:
   in one gesture and invisible until asked for.
 - **The Arabic gets real typographic care** — proper mushaf-style face, correct line
   height for diacritics, never cramped to fit an English layout.
-- **Source and summary always visually distinct** (§8 rule 7) — the one place where a
+- **Source and summary always visually distinct** (§9 rule 7) — the one place where a
   visual boundary is non-negotiable.
 - **No engagement furniture.** No streaks, badges, popups, or nudges. The reader came to
   read.
@@ -179,19 +181,152 @@ requires horizontal scrolling; modal dialogs in the reading path.
 
 Navigation as a first-class objective is not free. It adds, concretely:
 
-- a `cross_reference` table and the extraction stage that populates it (§6, §7);
+- a `cross_reference` table and the extraction stage that populates it (§7, §8);
 - reviewer workload — every extracted edge is content and needs approving, though edges
   review fast in bulk since each is one assertion with one citation;
 - peek-card rendering, trail state, and command-palette search in the app;
 - a topic taxonomy, which is genuinely editorial work and should start small — perhaps
   60–100 threads for the pilot rather than an exhaustive ontology.
 
-Sequenced in §10: links are extracted from Phase 1 so the pilot corpus has a real graph
+Sequenced in §11: links are extracted from Phase 1 so the pilot corpus has a real graph
 inside Juz ʿAmma, and the graph gets denser with every juz added.
 
 ---
 
-## 3. Decisions taken
+## 3. Presentation: script, theme, and sound
+
+The text has to look right, feel right to sit with, and be able to speak. All three are
+reader-facing settings, and all three share one rule: **they never change what the
+content says, only how it is presented.**
+
+### 3.1 Two Arabic modes, and they are genuinely different
+
+This is the fact that shapes the feature. There are two ways to put the Qur'an on a
+screen, and they are not two settings on the same view:
+
+| | **Flowing text** *(default)* | **Page-faithful mushaf** |
+|---|---|---|
+| How | A Unicode text edition in a webfont | QCF page fonts — one font file per mushaf page |
+| Reflows? | Yes — any width, any font size | No. Fixed 15 lines, fixed page |
+| Searchable / selectable | Yes | Effectively no (each glyph is a whole word) |
+| Cost | One font | **604 font files** plus page-layout data |
+| Right for | Reading tafsīr | Memorisers who hold page positions visually |
+
+The Madinah mushaf's page-perfect rendering works by giving every one of the 604 pages
+its own font, in which each glyph is an entire word. That is how apps reproduce the
+printed page exactly — and it is why that mode cannot reflow, cannot resize freely, and
+cannot be searched as text.
+
+**Recommendation: flowing text is the reading column. The mushaf page is a separate
+view.** Bayān is a tafsīr reader — its column has a plain-English paragraph, disclosures
+and inline cross-references beside the Arabic, and none of that survives a fixed 15-line
+page. Offer the page view as its own screen (`Mushaf`), for readers who want it, rather
+than bending the reading column into a shape it cannot hold.
+
+**Text editions** (flowing mode, user-selectable):
+
+| Edition | Notes |
+|---|---|
+| **Uthmani (KFGQPC Ḥafṣ)** | The default. What most readers expect. |
+| Uthmani simple | Lighter diacritics; also the search index |
+| **IndoPak** | Expected by South Asian readers; different orthographic conventions, not a font choice |
+| Imlaei | Modern standard orthography |
+
+**Mushaf layouts** (page view), all available from QUL: Madinah V1 (1405H, 604pp,
+15 lines) · Madinah V2 (1421H, 604pp) · QCF v4 (1441H) · IndoPak 15-line (610pp) ·
+IndoPak 16-line (548pp, nastaʿlīq) · Digital Khatt.
+
+**Arabic faces** for flowing mode — chosen independently of the English face: Amiri,
+Scheherazade New, Noto Naskh Arabic, KFGQPC Uthmanic Ḥafṣ, Digital Khatt.
+
+### 3.2 Word-by-word is a layer, not a script
+
+Word-by-word sits *over* flowing mode: each Arabic word carries its translation and
+transliteration beneath it, from QUL's word-level data (~78,000 words). Once that layer
+exists it also unlocks per-word audio highlighting and tajwīd colouring.
+
+**QAAM already renders word-by-word tajwīd-coloured mushaf text.** That work — the
+colouring rules, the word alignment — should be reused here rather than rebuilt.
+
+### 3.3 Themes: one engine, two axes
+
+Eight accent colours and "as clean as possible" pull against each other if you
+hand-design eight skins. So don't. **One engine, two independent axes:**
+
+- **Ground** — Paper · Sepia · Night · Black (true black for OLED)
+- **Accent** — Green · Blue · Purple · Red · Gold · Pink · Brown · Grey, plus a free hue
+
+Accents are generated in **OKLCH from a single hue value**, with lightness and chroma
+fixed per role and per ground. That means every accent is legible on every ground *by
+construction*, not by luck: 4 × 8 = 32 combinations out of about 14 tokens, with no skin
+files to maintain and no combination that was never checked.
+
+**The accent never touches the Qur'anic text.** Arabic and translation stay
+maximum-contrast ink on ground at every setting. The accent lives in chrome, links, the
+summary rule, selection and focus. A "purple theme" must never mean purple scripture —
+that is both ugly and a violation of §9 rule 7, which requires source and summary to
+stay visually distinct.
+
+**Customisable for real:** a hue slider produces any accent, not only the eight presets;
+themes can be named, saved, and exported as a small JSON blob to share or restore.
+
+**Reading comfort belongs here too:** Arabic size, English size, line height, column
+width, and per-script font choice. These are the settings people actually change.
+
+**Contrast is validated, not eyeballed.** A build check asserts every token pair on every
+ground clears the contrast threshold. A theme that fails does not ship.
+
+### 3.4 Recitation
+
+Three asks: offline MP3s of well-known reciters, single-ayah playback, and audio that
+follows you to the next ayah.
+
+**Per-ayah files are the unit.** Recitations are distributed as one file per ayah
+(`XXXYYY.mp3` — `002255.mp3` is 2:255), which makes "play this ayah only" native: no
+seeking inside a surah-length file, no drift, no cut-off endings.
+
+**Reciter packs download per juz, not whole-Qur'an.** A complete reciter at 128 kbps is
+roughly 800 MB–1.2 GB; a single juz is ~25–40 MB. Show the size before the download,
+show what is on disk, and allow deleting a juz without deleting the reciter.
+
+**Playback modes:**
+
+| Mode | Behaviour |
+|---|---|
+| Single ayah | Plays once and stops. The default. |
+| Through the passage | Continues to the end of the current passage |
+| Through the surah | Continues to the end of the surah |
+| **Repeat ×N** | Repeats one ayah a set number of times — the memorisation mode |
+| Follow along | Audio drives the scroll; word highlighting where the reciter has segment timestamps (not all do) |
+
+**Auto-advance is off by default.** Audio starting by itself is the fastest way to
+embarrass a reader in a quiet room. It is one toggle away, and once set it is remembered.
+
+**Reciters** — Ḥuṣarī, ʿAbd al-Bāsit, Minshāwī, Sudais, Shuraim, Alafasy, Ayyūb,
+ad-Dussarī and others; per-reciter availability, quality and rights tracked in
+`SOURCES.md`.
+
+**We fetch; we do not redistribute.** Until rights are cleared, the app downloads audio
+from the licensed source onto the reader's own machine for their personal use. It never
+ships audio in the installer and never re-serves it. Same discipline as the tafsīr texts
+(§6), and the same switch later if rights are granted.
+
+### 3.5 What this adds to the build — and what it doesn't
+
+Adds: an `audio` catalogue and a downloads manifest (in the **user** DB, never the
+content DB); a download manager with resume, integrity check and per-juz delete — fiddly,
+budget for it properly; 604 QCF page fonts (~20–40 MB) and page-layout data if the mushaf
+view ships; word-level data and its rendering; the theme engine and its contrast validator.
+
+**Does not add:** a single hour of scholarly review. None of this touches the content
+pipeline or the reviewer's queue. It is app work, it lands in Phase 2, and it does not
+move the constraint in §12. That is worth knowing before it feels like scope creep — it
+is the one part of the project that can be made as rich as you like without slowing the
+content down.
+
+---
+
+## 4. Decisions taken
 
 | Decision | Choice |
 |---|---|
@@ -201,11 +336,14 @@ inside Juz ʿAmma, and the graph gets denser with every juz added.
 | **Licensing posture** | Build the full corpus for **personal use now**; clear redistribution rights before any public release. Architecture keeps licensed and open content separable so this stays a switch, not a rewrite. |
 | **Audience** | Layman *and* student, served by one content set through a persistent **reading depth** setting that changes defaults, never availability (§2.1). |
 | **Verse linking** | A cross-reference graph built from **scholar-asserted** links extracted from the tafsīr itself. No unattributed similarity-search "related verses" (§2.2). |
+| **Arabic script** | Flowing Unicode text is the reading column (Uthmani default, IndoPak / Imlaei / Uthmani-simple selectable). Page-faithful QCF mushaf is a **separate view**, not a setting on the reading column (§3.1). |
+| **Themes** | One engine, two axes: 4 grounds × 8 accents generated in OKLCH from a single hue, plus a free hue slider. The accent never colours the Qur'anic text (§3.3). |
+| **Recitation** | Per-ayah MP3s; single-ayah play is the default; auto-advance ships **off**. Reciter packs download per juz. We fetch from the licensed source, never redistribute (§3.4). |
 | **Stack** | TypeScript/React UI → **Tauri 2** desktop first → same UI as web app → Capacitor for iOS/Android. Content pipeline in Python. |
 
 ---
 
-## 4. The finding that reshapes the plan
+## 5. The finding that reshapes the plan
 
 **Most of the great Sunni tafsīrs do not exist in complete English translation.**
 
@@ -247,7 +385,7 @@ This does not shrink the ambition. It sequences it so that what ships is always 
 
 ---
 
-## 5. Source register
+## 6. Source register
 
 Full detail, per source, in [`SOURCES.md`](SOURCES.md). Summary:
 
@@ -278,7 +416,7 @@ Full detail, per source, in [`SOURCES.md`](SOURCES.md). Summary:
 
 ---
 
-## 6. Content architecture
+## 7. Content architecture
 
 ### The key modelling insight
 
@@ -306,6 +444,18 @@ topic             — a concept thread (patience, orphans, naskh, the Sabbath)
 topic_membership  — (topic, passage) → ordered position in the thread
 citation          — (any generated text span) → source + locator. NOT NULLABLE.
 review_record     — who reviewed what, when, verdict, notes
+
+  presentation — content DB, but carries no review burden
+script_edition    — Uthmani | Uthmani-simple | IndoPak | Imlaei → text per ayah
+mushaf_layout     — layout id → page / line / word placement for the page view
+word              — (ayah, position) → arabic, translation, transliteration, tajwid
+reciter           — id, name, style, bitrate, has_segment_timestamps, licence
+ayah_audio        — (reciter, ayah) → file locator, duration, byte size
+audio_segment     — (reciter, ayah, word) → start/end ms, where timestamps exist
+
+  user DB — never the content DB
+theme_pref        — ground, accent hue, sizes, line height, column width, fonts
+audio_download    — (reciter, juz) → state, bytes on disk, checksum
 ```
 
 Two constraints do most of the safety work:
@@ -330,7 +480,7 @@ Two constraints do most of the safety work:
 
 ---
 
-## 7. The content pipeline
+## 8. The content pipeline
 
 A Python pipeline, run offline, producing the frozen content DB. Ten stages:
 
@@ -364,7 +514,7 @@ largest single engineering effort, and expect it to need a human spot-check pass
 - Every generated sentence maps to ≥1 citation with a resolvable source locator
 - Every quoted translation matches the licensed text byte-for-byte
 - Arabic text unchanged from Tanzil (checksum)
-- No fiqh ruling stated in imperative voice (flagged for review — see §8)
+- No fiqh ruling stated in imperative voice (flagged for review — see §9)
 - No claim of consensus (*ijmāʿ*) unless a source explicitly asserts it
 - Reading level of L1 ≤ grade 9 (it is for everyday folk; measure it, don't hope)
 - Named scholars appear in the source register with matching era/school
@@ -376,7 +526,7 @@ largest single engineering effort, and expect it to need a human spot-check pass
 
 ---
 
-## 8. Editorial policy
+## 9. Editorial policy
 
 Full text in [`EDITORIAL-POLICY.md`](EDITORIAL-POLICY.md). The non-negotiables:
 
@@ -407,7 +557,7 @@ Full text in [`EDITORIAL-POLICY.md`](EDITORIAL-POLICY.md). The non-negotiables:
 
 ---
 
-## 9. Application architecture
+## 10. Application architecture
 
 ### Desktop (Phase 2 — first shipped target)
 
@@ -422,6 +572,10 @@ Tauri 2 shell (Rust)
     ├── Search        FTS5 across translation, summary, tafsir
     ├── Compare       side-by-side translations / side-by-side mufassirun
     ├── Notes         personal notes + bookmarks (user DB)
+    ├── Mushaf        page-faithful QCF view — its own screen, not a reader setting
+    ├── Appearance    ground × accent, script edition, fonts, sizes, saved themes
+    ├── Player        per-ayah audio: single / passage / surah / repeat ×N / follow
+    ├── Downloads     reciter packs by juz — size, progress, resume, delete
     └── Sources       the register: who each scholar was, era, school, licence
 └── SQLite: content.db (read-only) + user.db (read-write)
 ```
@@ -466,14 +620,15 @@ means this is largely reused, not thrown away.
 
 ---
 
-## 10. Phasing
+## 11. Phasing
 
 | Phase | Weeks | Deliverable | Gate to next phase |
 |---|---|---|---|
 | **0 — Corpus spike** | 1–2 | Ingest Tanzil + Jalālayn + Wāḥidī + one API tafsīr for al-Fātiḥa and al-Baqara 1–20. Prove alignment works. | Alignment accurate on a hand-checked sample |
 | **1 — Pipeline + review tool** | 3–8 | Full 10-stage pipeline incl. link extraction. Review tool. **Pilot corpus: al-Fātiḥa + Juz ʿAmma** (38 surahs, 601 ayat) with its cross-reference graph and ~60–100 topic threads. | Pilot corpus and its edges fully human-reviewed |
-| **2 — Desktop reader v1** | 9–14 | Tauri app over the pilot corpus. Reader with depth modes, ⌘K palette, peek cards + trail, threads, search, notes, sources. | You use it daily and want to keep using it |
-| **3 — Scale to full Qur'an** | 15–40+ | Pipeline across all 114 surahs. Review juz by juz, longest surahs last. | Review throughput sustained; §11 is the real constraint |
+| **2 — Desktop reader v1** | 9–16 | Tauri app over the pilot corpus. Reader with depth modes, ⌘K palette, peek cards + trail, threads, search, notes, sources — **plus** the theme engine, script switching, and per-ayah audio with downloads. | You use it daily and want to keep using it |
+| **2b — Mushaf page view** | after 2 | QCF page fonts + layout data as a separate screen. Deferrable without blocking anything else. | — |
+| **3 — Scale to full Qur'an** | 15–40+ | Pipeline across all 114 surahs. Review juz by juz, longest surahs last. | Review throughput sustained; §12 is the real constraint |
 | **4 — Licensing + web** | parallel from wk 20 | Clear redistribution rights. Web app. | Green rows in `SOURCES.md` |
 | **5 — Mobile** | after 4 | iOS/Android via Capacitor. | — |
 | **Tier B (Arabic sources)** | from wk 20 | Ṭabarī, Qurṭubī, Rāzī et al., surah by surah | Arabic-competent reviewer secured |
@@ -485,7 +640,7 @@ that is immediately useful to you.
 
 ---
 
-## 11. The real constraint: review capacity
+## 12. The real constraint: review capacity
 
 Be clear-eyed about this. Engineering is not the bottleneck.
 
@@ -512,39 +667,44 @@ so freeze aggressively and don't rerun approved content without cause.
 
 ---
 
-## 12. Risks
+## 13. Risks
 
 | Risk | Severity | Mitigation |
 |---|---|---|
-| **Getting religious content wrong** | Critical | Every safeguard in §8. Human review is mandatory, never optional. Corrections path is first-class. This risk is why we don't ship live-generated text. |
+| **Getting religious content wrong** | Critical | Every safeguard in §9. Human review is mandatory, never optional. Corrections path is first-class. This risk is why we don't ship live-generated text. |
 | **Review capacity below plan** | High | Ship per-juz. Optimise the review tool relentlessly. Pay for reviewer time. |
 | **Licensing blocks public release** | High | Licensed content in a separable DB from day one. Open-licensed core is a complete product on its own. Start permission conversations in Phase 1, not Phase 4. |
 | **Tier B needs Arabic-competent review** | High | Tier A is a complete product. Tier B is strictly additive, per-surah, and clearly labelled. Never blocks a release. |
 | **Alignment of unaligned prose is harder than expected** | Medium | Phase 0 exists to find this out in two weeks, not six months. Prefer pre-aligned API sources where they exist. |
-| **Scope creep** (audio, word-by-word, tajwīd, Arabic UI) | Medium | Explicitly out of scope for v1. The list lives in §13 and stays there. |
+| **Audio rights and storage** | Medium | Fetch from the licensed source to the reader's own disk; never bundle or re-serve. Per-juz packs keep disk use in the reader's hands. Per-reciter rights tracked in `SOURCES.md` like everything else. |
+| **Presentation outgrowing the content** | Medium | Themes, scripts and audio add no reviewer hours (§3.5) — but they can absorb unlimited engineering. Phase 2 ships one solid pass; the mushaf page view is explicitly Phase 2b. |
+| **Scope creep** | Medium | What is out stays out, and the list lives in §14. What comes in gets costed there and then, as audio and word-by-word were. |
 | **Sole-maintainer bus factor** | Medium | Content DB is a plain SQLite file with an open schema. Pipeline is deterministic and re-runnable. Nothing is locked in a service. |
 
 ---
 
-## 13. Explicitly out of scope for v1
+## 14. Explicitly out of scope for v1
 
-Recorded so they stop being open questions: audio recitation and playback; word-by-word
-Arabic morphology; tajwīd colouring; Arabic-language UI; memorisation/ḥifẓ tools;
-prayer times; social or sharing features; user accounts and sync; languages other than
-English. Several are good ideas. None of them are v1.
+**Moved in.** Audio recitation, word-by-word and tajwīd colouring were on this list.
+They are now in scope (§3) at your request. They cost engineering, not review hours.
+
+Still out, recorded so they stop being open questions: Arabic-language UI;
+memorisation/ḥifẓ *tracking* (the repeat-×N playback mode covers the practical need
+without the bookkeeping); prayer times; social or sharing features; user accounts and
+cloud sync; languages other than English. Several are good ideas. None of them are v1.
 
 On navigation specifically, also out of scope for v1: a visual graph explorer of the
 cross-reference network (looks impressive, helps nobody read); AI chat over the corpus
-(violates §8 rule 1); and an exhaustive topic ontology — the pilot gets 60–100 threads
+(violates §9 rule 1); and an exhaustive topic ontology — the pilot gets 60–100 threads
 that earn their place, not a taxonomy of everything.
 
 ---
 
-## 14. Immediate next steps
+## 15. Immediate next steps
 
 1. **Confirm the pilot corpus** — al-Fātiḥa + Juz ʿAmma, or a different starting set.
 2. **Identify the reviewer.** Who signs off content? If it's you, be honest about
-   hours/week. If it's a scholar you'll engage, start that conversation now — §11 says
+   hours/week. If it's a scholar you'll engage, start that conversation now — §12 says
    it's the critical path and everything else is downstream of it.
 3. **Move this to its own repository.** `quran-shorts-agent` is a video tool; this is
    a different product with a different lifetime. Suggest `GoldCyberCommand/bayan`.
